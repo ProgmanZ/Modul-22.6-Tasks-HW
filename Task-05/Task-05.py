@@ -11,6 +11,9 @@ def rewrite(path, user_string):
         file = open(path, 'w')
         file.write(user_string)
         file.close()
+        if user_choice == 'да':
+            print('Файл успешно перезаписан!')
+
 
 
 def filename():

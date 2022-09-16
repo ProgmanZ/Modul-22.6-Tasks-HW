@@ -3,19 +3,14 @@
 import os
 
 
-def rewrite(path):
+def rewrite(path, user_string):
+    user_choice = 'нет'
     if os.path.exists(path):
-        while True:
-            user_choice = input('Вы действительно хотите перезаписать файл? ').lower()
-            if user_choice == 'да':
-                return True
-            elif user_choice == 'нет':
-                return False
-            else:
-                print('Ответ не совпадает. Возможны 2 варианта ответа: \'да\' и \'нет\'.')
-                continue
-    else:
-        return False
+        user_choice = input('Вы действительно хотите перезаписать файл? ').lower()
+    if not os.path.exists(path) or user_choice == 'да':
+        file = open(path, 'w')
+        file.write(user_string)
+        file.close()
 
 
 def filename():
@@ -46,12 +41,9 @@ user_path = check_way()
 user_file = filename()
 print(user_path)
 print(user_file)
-if rewrite(os.path.join(user_path, user_file)):
-    file = open(os.path.join(user_path,user_file), 'w')
-    file.write(user_input)
-    file.close()
+rewrite(os.path.join(user_path, user_file), user_input)
 
 print('Содержимое файла', user_file)
-file = open(os.path.join(user_path, os.path.sep, user_file), 'r')
+file = open(os.path.join(user_path, user_file), 'r')
 print(file.read())
 file.close()

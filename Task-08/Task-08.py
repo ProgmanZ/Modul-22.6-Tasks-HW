@@ -37,4 +37,3 @@ output_file = open('analysis.txt', 'w')
 [output_file.write(f'{value} {key:.4f}\n') for key in sorted(reverse_db.keys(), reverse=True) for value in sorted(reverse_db[key])]
 
 output_file.close()
-
